@@ -1,0 +1,2 @@
+/Users/apple/AI-GDSC-Solutions-Challenge/Flutter-My-Doctor-App/android/app/.cxx/Debug/4b6g05d1/x86/CMakeFiles/edit_cache.dir
+/Users/apple/AI-GDSC-Solutions-Challenge/Flutter-My-Doctor-App/android/app/.cxx/Debug/4b6g05d1/x86/CMakeFiles/rebuild_cache.dir
