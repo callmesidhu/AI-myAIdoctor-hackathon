@@ -87,7 +87,6 @@ class _ChatPageState extends State<ChatPage> {
             ),
           ),
 
-          // Gradient overlay
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -103,7 +102,6 @@ class _ChatPageState extends State<ChatPage> {
             ),
           ),
 
-          // Chat Content
           Column(
             children: [
               SizedBox(height: kToolbarHeight + 16),
@@ -118,7 +116,6 @@ class _ChatPageState extends State<ChatPage> {
                 ),
               ),
 
-              // Input Field
               SafeArea(
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
