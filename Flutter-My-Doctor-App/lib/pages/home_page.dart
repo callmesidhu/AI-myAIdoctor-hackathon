@@ -5,6 +5,8 @@ import 'package:flutter_my_doctor_app/pages/risk_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'diagnosis_page.dart';
 import 'risk_page.dart';
+import 'alert_page.dart';
+import 'chat_page.dart';
 class HomePage extends StatelessWidget {
   final List<Map<String, dynamic>> options = [
     {'icon': Icons.local_hospital, 'label': 'AI Powered Health Diagnosis'},
@@ -13,7 +15,7 @@ class HomePage extends StatelessWidget {
       'icon': Icons.health_and_safety,
       'label': 'Health Alerts and Notification'
     },
-    {'icon': Icons.smart_toy, 'label': 'AI Chat'},
+    {'icon': Icons.smart_toy, 'label': 'AI Chatbot'},
     {'icon': Icons.sports_gymnastics, 'label': 'Fitness Planner'},
     {'icon': Icons.emergency, 'label': 'Telemedicine Integration'},
   ];
@@ -94,6 +96,18 @@ class HomePage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => RiskPage()),
+                              );
+                            }
+                            if (item['label'] == 'Health Alerts and Notification') {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => AlertPage()),
+                              );
+                            }
+                            if (item['label'] == 'AI Chatbot') {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ChatPage()),
                               );
                             }
                           },
