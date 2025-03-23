@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class PlannerPage extends StatelessWidget {
+class PlannerPage extends StatefulWidget {
+  @override
+  _PlannerPageState createState() => _PlannerPageState();
+}
+
+class _PlannerPageState extends State<PlannerPage> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +35,6 @@ class PlannerPage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          // Background Image
           Positioned.fill(
             child: Image.asset(
               'assets/images/bg.jpg',
@@ -36,14 +42,13 @@ class PlannerPage extends StatelessWidget {
             ),
           ),
 
-          // Gradient Overlay
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color.fromRGBO(100, 149, 237, 0.9), // custom blue tone
-                    Color.fromRGBO(211, 211, 211, 0.9), // light grey
+                    Color.fromRGBO(100, 149, 237, 0.9),
+                    Color.fromRGBO(211, 211, 211, 0.9),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -52,9 +57,58 @@ class PlannerPage extends StatelessWidget {
             ),
           ),
 
-          // Page Content
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Daily Fitness Goals',
+                    style: GoogleFonts.robotoSlab(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
 
+                  SizedBox(height: 20),
+
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _goalCard('Steps', '10,000'),
+                      _goalCard('Calories', '500 kcal'),
+                      _goalCard('Workout', '45 mins'),
+
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
+      ),
+    );
+  }
+
+  Widget _goalCard(String title, String value) {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Container(
+        padding: EdgeInsets.all(16),
+        width: 100,
+        child: Column(
+          children: [
+            Text(
+              title,
+              style: GoogleFonts.roboto(fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            Text(value),
+          ],
+        ),
       ),
     );
   }
