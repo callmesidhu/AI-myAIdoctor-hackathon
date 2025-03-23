@@ -86,8 +86,8 @@ extendBodyBehindAppBar: true,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color.fromRGBO(100, 149, 237, 0.9), // custom blue tone
-                    Color.fromRGBO(211, 211, 211, 0.9), // light grey
+                    Color.fromRGBO(100, 149, 237, 0.9), 
+                    Color.fromRGBO(211, 211, 211, 0.9),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
