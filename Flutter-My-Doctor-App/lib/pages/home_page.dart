@@ -7,6 +7,8 @@ import 'diagnosis_page.dart';
 import 'risk_page.dart';
 import 'alert_page.dart';
 import 'chat_page.dart';
+import 'medicine_page.dart';
+import 'planner_page.dart';
 class HomePage extends StatelessWidget {
   final List<Map<String, dynamic>> options = [
     {'icon': Icons.local_hospital, 'label': 'AI Powered Health Diagnosis'},
@@ -108,6 +110,18 @@ class HomePage extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => ChatPage()),
+                              );
+                            }
+                            if (item['label'] == 'Fitness Planner') {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PlannerPage()),
+                              );
+                            }
+                            if (item['label'] == 'Telemedicine Integration') {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => MedicinePage()),
                               );
                             }
                           },
