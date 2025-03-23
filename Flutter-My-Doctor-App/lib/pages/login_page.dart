@@ -7,7 +7,6 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-      // Background Image
       Positioned.fill(
       child: Image.asset(
         'assets/images/bg.jpg',
@@ -15,7 +14,6 @@ class LoginPage extends StatelessWidget {
       ),
     ),
 
-    // Gradient Overlay
     Positioned.fill(
     child: Container(
     decoration: BoxDecoration(
@@ -38,7 +36,6 @@ class LoginPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Logo
                 Image.asset(
                   'assets/images/bg.png',
                   height: 140,
@@ -46,7 +43,6 @@ class LoginPage extends StatelessWidget {
 
                 SizedBox(height: 20),
 
-                // App Name
                 Text(
                   'my AI doctor',
                   style: GoogleFonts.robotoSlab(
@@ -65,7 +61,6 @@ class LoginPage extends StatelessWidget {
 
                 SizedBox(height: 40),
 
-                // Google Login Button
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
