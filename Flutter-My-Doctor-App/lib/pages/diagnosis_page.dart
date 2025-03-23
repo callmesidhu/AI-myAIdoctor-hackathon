@@ -13,7 +13,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
   String symptoms = '';
   String conditions = '';
   String duration = '';
-  String analysisResult = ''; // to store result
+  String analysisResult = ''; 
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,6 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          // Background Image
           Positioned.fill(
             child: Image.asset(
               'assets/images/bg.jpg',
@@ -49,7 +48,6 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
             ),
           ),
 
-          // Gradient Overlay
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -65,7 +63,6 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
             ),
           ),
 
-          // Main Content
           SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.fromLTRB(16, kToolbarHeight + 24, 16, 32),
@@ -78,7 +75,6 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // SYMPTOMS
                     Text(
                       'Enter your symptoms',
                       style: GoogleFonts.poppins(
@@ -117,7 +113,6 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
 
                     SizedBox(height: 15),
 
-                    // CONDITIONS
                     Text(
                       'Enter existing medical conditions',
                       style: GoogleFonts.poppins(
@@ -156,7 +151,6 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
 
                     SizedBox(height: 15),
 
-                    // DURATION
                     Text(
                       'Enter the duration of symptoms',
                       style: GoogleFonts.poppins(
@@ -195,7 +189,6 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
 
                     SizedBox(height: 30),
 
-                    // ANALYZE BUTTON
                     Center(
                       child: ElevatedButton(
                         onPressed: () {
@@ -220,7 +213,6 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
 
                     SizedBox(height: 30),
 
-                    // RESULT BOX
                     if (analysisResult.isNotEmpty)
                       Container(
                         width: double.infinity,
