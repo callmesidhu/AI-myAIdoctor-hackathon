@@ -27,7 +27,6 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Background Image
           Positioned.fill(
             child: Image.asset(
               'assets/images/bg.jpg',
@@ -35,7 +34,6 @@ class HomePage extends StatelessWidget {
             ),
           ),
 
-          // Gradient Overlay
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -57,7 +55,6 @@ class HomePage extends StatelessWidget {
     child: Column(
     crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Title
                   Text(
                     'Choose',
                     style: GoogleFonts.robotoSlab(
@@ -75,7 +72,6 @@ class HomePage extends StatelessWidget {
                   ),
                   SizedBox(height: 30),
 
-                  // Grid
                   Expanded(
                     child: GridView.builder(
                       itemCount: options.length,
