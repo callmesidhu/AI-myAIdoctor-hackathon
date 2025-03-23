@@ -7,7 +7,7 @@ import 'diagnosis_page.dart';
 import 'risk_page.dart';
 import 'alert_page.dart';
 import 'chat_page.dart';
-import 'medicine_page.dart';
+import 'telemedicine_page.dart';
 import 'planner_page.dart';
 class HomePage extends StatelessWidget {
   final List<Map<String, dynamic>> options = [
@@ -121,7 +121,7 @@ class HomePage extends StatelessWidget {
                             if (item['label'] == 'Telemedicine Integration') {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => MedicinePage()),
+                                MaterialPageRoute(builder: (context) => TelemedicinePage()),
                               );
                             }
                           },
