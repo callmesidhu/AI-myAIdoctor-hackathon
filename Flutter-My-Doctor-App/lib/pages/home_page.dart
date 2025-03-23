@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     {'icon': Icons.sick, 'label': 'Disease Risk Prediction'},
     {
       'icon': Icons.health_and_safety,
-      'label': 'Health Alerts and Notification'
+      'label': 'Health Alerts and Notifications'
     },
     {'icon': Icons.smart_toy, 'label': 'AI Chatbot'},
     {'icon': Icons.sports_gymnastics, 'label': 'Fitness Planner'},
@@ -100,7 +100,7 @@ class HomePage extends StatelessWidget {
                                 MaterialPageRoute(builder: (context) => RiskPage()),
                               );
                             }
-                            if (item['label'] == 'Health Alerts and Notification') {
+                            if (item['label'] == 'Health Alerts and Notifications') {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => AlertPage()),

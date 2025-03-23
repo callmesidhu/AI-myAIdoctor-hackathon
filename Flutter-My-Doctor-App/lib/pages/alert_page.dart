@@ -33,7 +33,7 @@ class AlertPage extends StatelessWidget {
     child: Padding(
     padding: const EdgeInsets.only(top: 0.20), // Move it lower
     child: Text(
-    'Notification',
+    'Notifications',
     style: GoogleFonts.robotoSlab(
     fontSize: 26,
     fontWeight: FontWeight.bold,
