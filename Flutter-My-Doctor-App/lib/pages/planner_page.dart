@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,7 +8,9 @@ class PlannerPage extends StatefulWidget {
 }
 
 class _PlannerPageState extends State<PlannerPage> {
-
+  final TextEditingController stepsController = TextEditingController();
+  final TextEditingController caloriesController = TextEditingController();
+  final TextEditingController workoutController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +38,7 @@ class _PlannerPageState extends State<PlannerPage> {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
+          // Background image
           Positioned.fill(
             child: Image.asset(
               'assets/images/bg.jpg',
@@ -42,6 +46,7 @@ class _PlannerPageState extends State<PlannerPage> {
             ),
           ),
 
+          // Gradient overlay
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -57,6 +62,7 @@ class _PlannerPageState extends State<PlannerPage> {
             ),
           ),
 
+          // Main content
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -74,13 +80,13 @@ class _PlannerPageState extends State<PlannerPage> {
 
                   SizedBox(height: 20),
 
+                  // Input Cards
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _goalCard('Steps', '10,000'),
-                      _goalCard('Calories', '500 kcal'),
-                      _goalCard('Workout', '45 mins'),
-
+                      _goalCardWithInput('Steps', stepsController, '10,000'),
+                      _goalCardWithInput('Calories', caloriesController, '500 kcal'),
+                      _goalCardWithInput('Workout', workoutController, '45 mins'),
                     ],
                   ),
                 ],
@@ -92,12 +98,12 @@ class _PlannerPageState extends State<PlannerPage> {
     );
   }
 
-  Widget _goalCard(String title, String value) {
+  Widget _goalCardWithInput(String title, TextEditingController controller, String hint) {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(12),
         width: 100,
         child: Column(
           children: [
@@ -105,8 +111,17 @@ class _PlannerPageState extends State<PlannerPage> {
               title,
               style: GoogleFonts.roboto(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 20),
-            Text(value),
+            SizedBox(height: 12),
+            TextField(
+              controller: controller,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 14),
+              decoration: InputDecoration(
+                hintText: hint,
+                border: OutlineInputBorder(),
+                contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              ),
+            ),
           ],
         ),
       ),

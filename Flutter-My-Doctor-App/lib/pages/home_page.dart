@@ -1,10 +1,10 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_my_doctor_app/pages/risk_page.dart';
+import 'package:flutter_my_doctor_app/pages/riskprediction_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'diagnosis_page.dart';
-import 'risk_page.dart';
+import 'riskprediction_page.dart';
 import 'alert_page.dart';
 import 'chat_page.dart';
 import 'telemedicine_page.dart';
@@ -97,7 +97,7 @@ class HomePage extends StatelessWidget {
                             if (item['label'] == 'Disease Risk Prediction') {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => RiskPage()),
+                                MaterialPageRoute(builder: (context) => RiskPredictionPage()),
                               );
                             }
                             if (item['label'] == 'Health Alerts and Notifications') {

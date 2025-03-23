@@ -9,7 +9,11 @@ class DiagnosisPage extends StatefulWidget {
 
 class _DiagnosisPageState extends State<DiagnosisPage> {
   final _formKey = GlobalKey<FormState>();
+
   String symptoms = '';
+  String conditions = '';
+  String duration = '';
+  String analysisResult = ''; // to store result
 
   @override
   Widget build(BuildContext context) {
@@ -61,159 +65,181 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
             ),
           ),
 
+          // Main Content
           SingleChildScrollView(
-    child: Container(
-    padding: EdgeInsets.fromLTRB(16, kToolbarHeight + 24, 16, 32),
-    width: double.infinity,
-    constraints: BoxConstraints(
-    minHeight: MediaQuery.of(context).size.height,
-    ),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Enter your symptoms',
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(height: 15),
-
-                  TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'e.g. fever, cough, headache',
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.teal, width: 2),
+            child: Container(
+              padding: EdgeInsets.fromLTRB(16, kToolbarHeight + 24, 16, 32),
+              width: double.infinity,
+              constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height,
+              ),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // SYMPTOMS
+                    Text(
+                      'Enter your symptoms',
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
                       ),
-                      contentPadding: EdgeInsets.symmetric(
-                          vertical: 27, horizontal: 12),
                     ),
-                    maxLines: 3,
-                    keyboardType: TextInputType.multiline,
-                    onChanged: (value) {
-                      setState(() {
-                        symptoms = value;
-                      });
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your symptoms';
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 15),
-                  Text(
-                    'Enter existing medical conditions',
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(height: 15),
-
-                  TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'e.g. asthma,diabetes,high BP',
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.teal, width: 2),
+                    SizedBox(height: 15),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'e.g. fever, cough, headache',
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.teal, width: 2),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 27, horizontal: 12),
                       ),
-                      contentPadding: EdgeInsets.symmetric(
-                          vertical: 27, horizontal: 12),
-                    ),
-                    maxLines: 3,
-                    keyboardType: TextInputType.multiline,
-                    onChanged: (value) {
-                      setState(() {
-                        symptoms = value;
-                      });
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your symptoms';
-                      }
-                      return null;
-                    },
-                  ),
-
-                  SizedBox(height: 15),
-                  Text(
-                    'Enter the duration of symptoms',
-                    style: GoogleFonts.poppins(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(height: 15),
-
-                  TextFormField(
-                    decoration: InputDecoration(
-                      hintText: 'e.g. 2 days, 1 week',
-                      filled: true,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.teal, width: 2),
-                      ),
-                      contentPadding: EdgeInsets.symmetric(
-                          vertical: 27, horizontal: 12),
-                    ),
-                    maxLines: 3,
-                    keyboardType: TextInputType.multiline,
-                    onChanged: (value) {
-                      setState(() {
-                        symptoms = value;
-                      });
-                    },
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your symptoms';
-                      }
-                      return null;
-                    },
-                  ),
-
-                  SizedBox(height: 50),
-
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Analyzing symptoms...')),
-                          );
-                        }
+                      maxLines: 3,
+                      keyboardType: TextInputType.multiline,
+                      onChanged: (value) {
+                        setState(() {
+                          symptoms = value;
+                        });
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue[800],
-                        padding:
-                        EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                      ),
-                      child: Text('Analyze with AI',
-                          style: GoogleFonts.poppins(
-                            color: Colors.white
-                          )
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your symptoms';
+                        }
+                        return null;
+                      },
+                    ),
+
+                    SizedBox(height: 15),
+
+                    // CONDITIONS
+                    Text(
+                      'Enter existing medical conditions',
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
                       ),
                     ),
-                  )
-                ],
+                    SizedBox(height: 15),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'e.g. asthma, diabetes, high BP',
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.teal, width: 2),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 27, horizontal: 12),
+                      ),
+                      maxLines: 3,
+                      keyboardType: TextInputType.multiline,
+                      onChanged: (value) {
+                        setState(() {
+                          conditions = value;
+                        });
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your conditions';
+                        }
+                        return null;
+                      },
+                    ),
+
+                    SizedBox(height: 15),
+
+                    // DURATION
+                    Text(
+                      'Enter the duration of symptoms',
+                      style: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: 'e.g. 2 days, 1 week',
+                        filled: true,
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.teal, width: 2),
+                        ),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 27, horizontal: 12),
+                      ),
+                      maxLines: 3,
+                      keyboardType: TextInputType.multiline,
+                      onChanged: (value) {
+                        setState(() {
+                          duration = value;
+                        });
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the duration';
+                        }
+                        return null;
+                      },
+                    ),
+
+                    SizedBox(height: 30),
+
+                    // ANALYZE BUTTON
+                    Center(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            setState(() {
+                              analysisResult =
+                              'Based on your input of "$symptoms", with conditions "$conditions" for "$duration", it is likely you have a mild viral infection.\n\nPlease consult a doctor for confirmation.';
+                            });
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue[800],
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 14),
+                        ),
+                        child: Text('Analyze with AI',
+                            style: GoogleFonts.poppins(
+                              color: Colors.white,
+                            )),
+                      ),
+                    ),
+
+                    SizedBox(height: 30),
+
+                    // RESULT BOX
+                    if (analysisResult.isNotEmpty)
+                      Container(
+                        width: double.infinity,
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.9),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          analysisResult,
+                          style: GoogleFonts.poppins(fontSize: 16),
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
-                ),
-    ]
+        ],
       ),
     );
   }
