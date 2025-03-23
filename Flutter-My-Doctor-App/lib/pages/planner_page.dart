@@ -38,7 +38,6 @@ class _PlannerPageState extends State<PlannerPage> {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          // Background image
           Positioned.fill(
             child: Image.asset(
               'assets/images/bg.jpg',
@@ -46,7 +45,6 @@ class _PlannerPageState extends State<PlannerPage> {
             ),
           ),
 
-          // Gradient overlay
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -62,7 +60,6 @@ class _PlannerPageState extends State<PlannerPage> {
             ),
           ),
 
-          // Main content
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -80,7 +77,6 @@ class _PlannerPageState extends State<PlannerPage> {
 
                   SizedBox(height: 20),
 
-                  // Input Cards
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
