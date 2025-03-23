@@ -27,7 +27,6 @@ class RiskPage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          // Background Image
           Positioned.fill(
             child: Image.asset(
               'assets/images/bg.jpg',
@@ -35,14 +34,13 @@ class RiskPage extends StatelessWidget {
             ),
           ),
 
-          // Gradient Overlay
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color.fromRGBO(100, 149, 237, 0.9), // custom blue tone
-                    Color.fromRGBO(211, 211, 211, 0.9), // light grey
+                    Color.fromRGBO(100, 149, 237, 0.9), 
+                    Color.fromRGBO(211, 211, 211, 0.9), 
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -51,7 +49,6 @@ class RiskPage extends StatelessWidget {
             ),
           ),
 
-          // Page Content
 
         ],
       ),
