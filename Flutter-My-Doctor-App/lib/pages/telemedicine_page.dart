@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TelemedicinePage extends StatelessWidget {
+  const TelemedicinePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

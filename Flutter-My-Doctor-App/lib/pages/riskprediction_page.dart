@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RiskPredictionPage extends StatefulWidget {
+  const RiskPredictionPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _RiskPredictionPageState createState() => _RiskPredictionPageState();
 }
 

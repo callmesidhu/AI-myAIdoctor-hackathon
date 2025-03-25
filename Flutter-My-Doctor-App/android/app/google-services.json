@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "661251309033",
+    "project_id": "my-ai-doctor",
+    "storage_bucket": "my-ai-doctor.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661251309033:android:e509c0beeaf3fd06cadf78",
+        "android_client_info": {
+          "package_name": "com.xyphx.aidoctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661251309033-4bmv2n2ipg50hod2kv53fc9r5029g597.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkZ0xwehrurFWTjR3F7h5X7W9UnNrE8Gk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661251309033-4bmv2n2ipg50hod2kv53fc9r5029g597.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
