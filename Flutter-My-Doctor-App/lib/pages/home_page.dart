@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_my_doctor_app/pages/riskprediction_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'diagnosis_page.dart';
-import 'riskprediction_page.dart';
 import 'alert_page.dart';
 import 'chat_page.dart';
 import 'telemedicine_page.dart';
@@ -21,6 +20,8 @@ class HomePage extends StatelessWidget {
     {'icon': Icons.sports_gymnastics, 'label': 'Fitness Planner'},
     {'icon': Icons.emergency, 'label': 'Telemedicine Integration'},
   ];
+
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
