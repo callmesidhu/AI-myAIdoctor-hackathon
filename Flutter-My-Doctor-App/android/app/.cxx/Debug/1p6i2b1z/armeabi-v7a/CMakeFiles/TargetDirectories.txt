@@ -1,0 +1,2 @@
+C:/Users/CallMeSidhu/Desktop/AI-myAIdoctor-hackathon/Flutter-My-Doctor-App/android/app/.cxx/Debug/1p6i2b1z/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/CallMeSidhu/Desktop/AI-myAIdoctor-hackathon/Flutter-My-Doctor-App/android/app/.cxx/Debug/1p6i2b1z/armeabi-v7a/CMakeFiles/rebuild_cache.dir
