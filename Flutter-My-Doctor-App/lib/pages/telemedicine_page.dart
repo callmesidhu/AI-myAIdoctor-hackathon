@@ -41,7 +41,7 @@ class TelemedicinePage extends StatelessWidget {
                           alignment: PlaceholderAlignment.baseline,
                           baseline: TextBaseline.alphabetic,
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 0.20),
+                            padding: const EdgeInsets.only(bottom: 10),
                             child: Text(
                               'Integration',
                               style: GoogleFonts.robotoSlab(
