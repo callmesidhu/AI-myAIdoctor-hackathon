@@ -1,10 +1,14 @@
-from flask import Flask
+from flask import Flask, render_template
 from routes.chatbot import chatbot_bp
 
 app = Flask(__name__)
 
+
 app.register_blueprint(chatbot_bp)
 
+@app.route('/docs')
+def docs():
+    return render_template('docs.html')
 
 @app.route('/')
 def home():

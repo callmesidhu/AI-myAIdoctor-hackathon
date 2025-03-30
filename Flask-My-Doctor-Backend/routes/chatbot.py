@@ -3,6 +3,7 @@ import google.generativeai as genai
 import os
 from dotenv import load_dotenv
 
+
 # Load environment variables
 load_dotenv()
 
@@ -17,7 +18,7 @@ genai.configure(api_key=GENAI_API_KEY)
 def chat_bot():
     try:
         data = request.get_json()
-        
+
         if not data or "message" not in data:
             return jsonify({"error": "Message field is required"}), 400
         
