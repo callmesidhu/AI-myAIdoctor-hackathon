@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_my_doctor_app/services/auth_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'home_page.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-  
+  LoginPage({super.key});
+
+  final AuthService _authService = AuthService(); // Create an instance of AuthService
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,19 +82,29 @@ class LoginPage extends StatelessWidget {
                       ),
                       onPressed: () async {
                         try {
-                          // Call the Google Sign-In function
-        
-                          // On successful sign in, navigate to HomePage
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomePage(),
-                            ),
-                          );
+                          // Call the Google Sign-In function from AuthService
+                          var user = await _authService.signInWithGoogle();
+                          if (user != null) {
+                            // On successful sign-in, navigate to HomePage
+                            Navigator.pushReplacement(
+                              // ignore: use_build_context_synchronously
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomePage(),
+                              ),
+                            );
+                          } else {
+                            // Handle user cancellation or error
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Sign-in failed')),
+                            );
+                          }
                         } catch (error) {
                           // Display error message
+                          // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text("Sign in error: $error")),
+                            SnackBar(content: Text("Sign-in error: $error")),
                           );
                         }
                       },

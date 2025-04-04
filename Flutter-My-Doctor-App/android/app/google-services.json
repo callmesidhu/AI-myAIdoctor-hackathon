@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:661251309033:android:e509c0beeaf3fd06cadf78",
+        "mobilesdk_app_id": "1:661251309033:android:f768c4731f7ef7b5cadf78",
         "android_client_info": {
-          "package_name": "com.xyphx.aidoctor"
+          "package_name": "com.example.flutter_my_doctor_app"
         }
       },
       "oauth_client": [
