@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .accordion {
+            background-color: #f1f1f1;
+            color: #333;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 18px;
+            transition: 0.4s;
+            margin-top: 10px;
+        }
+        .active, .accordion:hover {
+            background-color: #ccc;
+        }
+        .panel {
+            padding: 10px;
+            display: none;
+            background-color: white;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            margin-bottom: 5px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Chatbot API Documentation</h1>
+
+    <button class="accordion">📌 Endpoint</button>
+    <div class="panel">
+        <p><strong>POST</strong> <code>/api/chat-bot</code></p>
+        <p>This API takes a JSON message as input and returns a response.</p>
+    </div>
+
+    <button class="accordion">📩 Request Example</button>
+    <div class="panel">
+        <pre>
+{
+  "message": "who is 7up"
+}
+        </pre>
+    </div>
+
+    <button class="accordion">📤 Response Example</button>
+    <div class="panel">
+        <pre>
+{
+  "response": "7 Up is a brand of lemon-lime-flavored non-caffeinated soft drink. 
+  The rights to the brand are held by Keurig Dr Pepper in the United States and 
+  by 7 Up International in the rest of the world."
+}
+        </pre>
+    </div>
+
+    <button class="accordion">📜 Content Type</button>
+    <div class="panel">
+        <p><code>application/json</code></p>
+    </div>
+
+    <button class="accordion">⚠️ Possible Errors</button>
+    <div class="panel">
+        <ul>
+            <li><strong>400 Bad Request</strong>: If the request does not contain a valid "message" field.</li>
+        </ul>
+    </div>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                panel.style.display = (panel.style.display === "block") ? "none" : "block";
+            });
+        }
+    </script>
+
+</body>
+</html>

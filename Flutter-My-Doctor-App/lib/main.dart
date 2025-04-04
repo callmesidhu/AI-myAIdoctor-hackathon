@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_my_doctor_app/pages/login_page.dart';
+import 'package:flutter_my_doctor_app/pages/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -23,7 +22,7 @@ class MyDoctorApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: LoginPage()
+      home: HomePage()
 );
   }
 }
