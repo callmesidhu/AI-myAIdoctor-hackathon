@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class DiagnosisPage extends StatefulWidget {
   const DiagnosisPage({super.key});
@@ -16,7 +17,42 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
   String symptoms = '';
   String conditions = '';
   String duration = '';
-  String analysisResult = ''; 
+  String analysisResult = '';
+
+  // Function to make the POST request to the health diagnosis API
+  Future<void> _analyzeHealth() async {
+    if (_formKey.currentState!.validate()) {
+      final url = Uri.parse('http://10.0.2.2:5000/api/health-diagnosis');
+      final payload = {
+        "symptoms": symptoms,
+        "medical_condition": conditions,
+        "symptom_duration": duration,
+      };
+
+      try {
+        final response = await http.post(
+          url,
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode(payload),
+        );
+
+        if (response.statusCode == 200) {
+          final data = jsonDecode(response.body);
+          setState(() {
+            analysisResult = data['diagnosis'];
+          });
+        } else {
+          setState(() {
+            analysisResult = 'Error: ${response.statusCode} - Unable to fetch diagnosis.';
+          });
+        }
+      } catch (error) {
+        setState(() {
+          analysisResult = 'Error: $error';
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +80,14 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
+          // Background Image
           Positioned.fill(
             child: Image.asset(
               'assets/images/bg.jpg',
               fit: BoxFit.cover,
             ),
           ),
-
+          // Gradient Overlay
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -65,7 +102,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
               ),
             ),
           ),
-
+          // Form Content
           SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.fromLTRB(16, kToolbarHeight + 24, 16, 32),
@@ -78,6 +115,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Symptoms Input
                     Text(
                       'Enter your symptoms',
                       style: GoogleFonts.poppins(
@@ -96,8 +134,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.teal, width: 2),
                         ),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 27, horizontal: 12),
+                        contentPadding: EdgeInsets.symmetric(vertical: 27, horizontal: 12),
                       ),
                       maxLines: 3,
                       keyboardType: TextInputType.multiline,
@@ -113,9 +150,8 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
                         return null;
                       },
                     ),
-
                     SizedBox(height: 15),
-
+                    // Medical Conditions Input
                     Text(
                       'Enter existing medical conditions',
                       style: GoogleFonts.poppins(
@@ -134,8 +170,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.teal, width: 2),
                         ),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 27, horizontal: 12),
+                        contentPadding: EdgeInsets.symmetric(vertical: 27, horizontal: 12),
                       ),
                       maxLines: 3,
                       keyboardType: TextInputType.multiline,
@@ -151,9 +186,8 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
                         return null;
                       },
                     ),
-
                     SizedBox(height: 15),
-
+                    // Duration Input
                     Text(
                       'Enter the duration of symptoms',
                       style: GoogleFonts.poppins(
@@ -172,8 +206,7 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.teal, width: 2),
                         ),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 27, horizontal: 12),
+                        contentPadding: EdgeInsets.symmetric(vertical: 27, horizontal: 12),
                       ),
                       maxLines: 3,
                       keyboardType: TextInputType.multiline,
@@ -189,33 +222,23 @@ class _DiagnosisPageState extends State<DiagnosisPage> {
                         return null;
                       },
                     ),
-
                     SizedBox(height: 30),
-
+                    // Analyze Button
                     Center(
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            setState(() {
-                              analysisResult =
-                              'Based on your input of "$symptoms", with conditions "$conditions" for "$duration", it is likely you have a mild viral infection.\n\nPlease consult a doctor for confirmation.';
-                            });
-                          }
-                        },
+                        onPressed: _analyzeHealth,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue[800],
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 14),
+                          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 14),
                         ),
-                        child: Text('Analyze with AI',
-                            style: GoogleFonts.poppins(
-                              color: Colors.white,
-                            )),
+                        child: Text(
+                          'Analyze with AI',
+                          style: GoogleFonts.poppins(color: Colors.white),
+                        ),
                       ),
                     ),
-
                     SizedBox(height: 30),
-
+                    // Display the Diagnosis Result
                     if (analysisResult.isNotEmpty)
                       Container(
                         width: double.infinity,
