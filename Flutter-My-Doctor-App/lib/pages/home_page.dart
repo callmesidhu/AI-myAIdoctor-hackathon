@@ -112,7 +112,7 @@ class HomePage extends StatelessWidget {
                             if (item['label'] == 'Workout Planner') {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => FitnessPage()),
+                                MaterialPageRoute(builder: (context) => FitnessGoalForm()),
                               );
                             }
                             if (item['label'] == 'Telemedicine Integration') {
