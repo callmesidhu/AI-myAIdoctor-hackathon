@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:google_fonts/google_fonts.dart';
+
 
 class FitnessGoalForm extends StatefulWidget {
   @override
@@ -27,9 +29,23 @@ class _FitnessGoalFormState extends State<FitnessGoalForm> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text("Workout Planner"),
         backgroundColor: Colors.transparent,
         elevation: 0,
+        title: Text(
+          'Workout Planner',
+        style: GoogleFonts.robotoSlab(
+          fontSize: 26,
+          fontWeight: FontWeight.bold,
+          color: Colors.blue[800],
+          shadows: [
+            Shadow(
+              color: Colors.black,
+              offset: Offset(2, 2),
+              blurRadius: 4,
+            ),
+          ],
+        ),
+      ),
       ),
       body: Stack(
         children: [
@@ -101,7 +117,7 @@ class _FitnessGoalFormState extends State<FitnessGoalForm> {
           ),
         ],
       ),
-    );
+      );
   }
 
   Widget _buildDropdown(String label, List<String> items, String? value, ValueChanged<String?> onChanged) {
