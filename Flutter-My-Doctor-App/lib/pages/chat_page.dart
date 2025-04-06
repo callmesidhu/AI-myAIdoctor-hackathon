@@ -1,32 +1,71 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _ChatPageState createState() => _ChatPageState();
 }
 
 class _ChatPageState extends State<ChatPage> {
   final List<Map<String, String>> messages = [
-    {
-      'sender': 'bot',
-      'text': "I'm your AI Health Assistant, what can I do for you?"
-    }
+    {'sender': 'bot', 'text': "I'm your AI Health Assistant, what can I do for you?"}
   ];
 
   final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController(); // ✅ Added scroll controller
 
-  void _sendMessage() {
+  void _sendMessage() async {
     String message = _controller.text.trim();
     if (message.isNotEmpty) {
       setState(() {
         messages.add({'sender': 'user', 'text': message});
       });
+
       _controller.clear();
+      _scrollToBottom(); // ✅ Scrolls to bottom after sending message
+
+      try {
+        final response = await http.post(
+          Uri.parse('http://10.0.2.2:5000/api/chat-bot'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({'message': message}),
+        );
+
+        if (response.statusCode == 200) {
+          final data = jsonDecode(response.body);
+          final botReply = data['response'];
+
+          setState(() {
+            messages.add({'sender': 'bot', 'text': botReply});
+          });
+        } else {
+          setState(() {
+            messages.add({'sender': 'bot', 'text': 'Error: ${response.statusCode}'});
+          });
+        }
+      } catch (e) {
+        setState(() {
+          messages.add({'sender': 'bot', 'text': 'Error sending message: $e'});
+        });
+      }
+
+      _scrollToBottom(); // ✅ Ensures the latest message is always visible
     }
+  }
+
+  void _scrollToBottom() {
+    Future.delayed(Duration(milliseconds: 100), () {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    });
   }
 
   Widget buildChatBubble(String text, bool isUser) {
@@ -66,6 +105,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true, // ✅ Ensures the input field moves up with keyboard
       appBar: AppBar(
         title: Text(
           'AI Chatbot',
@@ -89,7 +129,6 @@ class _ChatPageState extends State<ChatPage> {
               fit: BoxFit.cover,
             ),
           ),
-
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -104,13 +143,13 @@ class _ChatPageState extends State<ChatPage> {
               ),
             ),
           ),
-
           Column(
             children: [
               SizedBox(height: kToolbarHeight + 16),
               Expanded(
                 child: ListView.builder(
-                  padding: EdgeInsets.only(bottom: 60),
+                  controller: _scrollController, // ✅ Added controller for auto-scroll
+                  padding: EdgeInsets.only(bottom: 10),
                   itemCount: messages.length,
                   itemBuilder: (context, index) {
                     final msg = messages[index];
@@ -118,7 +157,6 @@ class _ChatPageState extends State<ChatPage> {
                   },
                 ),
               ),
-
               SafeArea(
                 child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -128,6 +166,7 @@ class _ChatPageState extends State<ChatPage> {
                       Expanded(
                         child: TextField(
                           controller: _controller,
+                          onSubmitted: (_) => _sendMessage(),
                           decoration: InputDecoration(
                             hintText: 'Type your message...',
                             filled: true,

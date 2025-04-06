@@ -8,149 +8,109 @@ class TelemedicinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Telemedicine',
-          style: GoogleFonts.robotoSlab(
-            fontSize: 26,
-            fontWeight: FontWeight.bold,
-            color: Colors.blue[800],
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-      ),
-      extendBodyBehindAppBar: true,
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset(
-              'assets/images/bg.jpg',
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromRGBO(100, 149, 237, 0.85),
-                    Color.fromRGBO(211, 211, 211, 0.85),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-              ),
-            ),
-          ),
-
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
+        extendBodyBehindAppBar: true,
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(100),
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                  Text(
-                    "Choose a Category",
-                    style: GoogleFonts.roboto(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-
-                  SizedBox(
-                    height: 60,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
+                  Text.rich(
+                    TextSpan(
                       children: [
-                        _categoryChip("General"),
-                        _categoryChip("Psychologist"),
-                        _categoryChip("Dermatologist"),
-                        _categoryChip("Nutritionist"),
-                        _categoryChip("Pediatrician"),
-                      ],
-                    ),
-                  ),
+                        TextSpan(
+                          text: 'Telemedicine\n',
+                          style: GoogleFonts.robotoSlab(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue[800],
+                            shadows: [
+                              Shadow(
+                                color: Colors.black,
+                                offset: Offset(2, 2),
+                                blurRadius: 4,
+                              ),
+                            ],
+                          ),
+                        ),
 
-                  SizedBox(height: 20),
 
-                  Text(
-                    "Available Doctors",
-                    style: GoogleFonts.robotoSlab(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(height: 10),
-
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        _doctorCard("Dr. Aisha Verma", "General Physician"),
-                        _doctorCard("Dr. Rahul Singh", "Dermatologist"),
-                        _doctorCard("Dr. Neha Kapoor", "Psychologist"),
+                        WidgetSpan(
+                          alignment: PlaceholderAlignment.baseline,
+                          baseline: TextBaseline.alphabetic,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Text(
+                              'Integration',
+                              style: GoogleFonts.robotoSlab(
+                                fontSize: 26,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue[800],
+                                shadows: [
+                                  Shadow(
+                                    color: Colors.black,
+                                    offset: Offset(2, 2),
+                                    blurRadius: 4,
+                                  ),
+                                ],
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _categoryChip(String label) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 8.0),
-      child: Chip(
-        label: Text(label),
-        backgroundColor: Colors.white,
-        labelStyle: TextStyle(fontWeight: FontWeight.bold),
-        elevation: 3,
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      ),
-    );
-  }
-
-  Widget _doctorCard(String name, String specialty) {
-    return Card(
-      margin: EdgeInsets.only(bottom: 16),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(name,
-                      style: GoogleFonts.roboto(
-                          fontSize: 16, fontWeight: FontWeight.bold)),
-                  Text(specialty,
-                      style: TextStyle(fontSize: 14, color: Colors.grey[700])),
-                ],
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text("Book"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue[800],
               ),
             )
-          ],
         ),
-      ),
+        body: Stack(
+            children: [
+              // Background Image
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/images/bg.jpg',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              // Gradient Overlay
+              Positioned.fill(
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromRGBO(100, 149, 237, 0.9),
+                        Color.fromRGBO(211, 211, 211, 0.9),
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                ),
+              ),
+    Center(
+    child: Text(
+    'Coming Soon...',
+    style: GoogleFonts.robotoSlab(
+    fontSize: 32,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+    shadows: [
+    Shadow(
+    color: Colors.black,
+    offset: Offset(2, 2),
+    blurRadius: 4,
+    ),
+            ]
+        )
+    )
+    )
+    ]
+        )
     );
   }
 }
+    // Form Content
