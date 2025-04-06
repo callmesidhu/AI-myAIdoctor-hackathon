@@ -13,7 +13,7 @@ fitness_planner_bp = Blueprint('fitness_planner', __name__)
 GENAI_API_KEY = os.getenv("GENAI_API_KEY")
 genai.configure(api_key=GENAI_API_KEY)
 
-@fitness_planner_bp.route('/api/fitness-planner', methods=['POST'])
+@fitness_planner_bp.route('/api/workout-planner', methods=['POST'])
 def fitness_planner():
     try:
         data = request.get_json()
