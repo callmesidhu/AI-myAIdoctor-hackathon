@@ -1,12 +1,14 @@
 from flask import Flask, render_template # type: ignore
 from routes.chatbot import chatbot_bp
 from routes.fitness_planner import fitness_planner_bp
+from routes.health_diagnosis import health_diagnosis_bp
 
 app = Flask(__name__)
 
 
 app.register_blueprint(chatbot_bp)
 app.register_blueprint(fitness_planner_bp)
+app.register_blueprint(health_diagnosis_bp)
 
 @app.route('/docs')
 def docs():
