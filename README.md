@@ -1,2 +1,2 @@
-# AI-GDSC-Solutions-Challenge
-AI for a better tomorrow. Solutions Challenge is an all India level Hackathon by Google Developer Student Clubs (GDSC)
+# Flutter - Flask 
+![Screenshot 2025-04-08 070601](https://github.com/user-attachments/assets/a4bddb01-ff71-432e-b61d-60bbe0cadbb1)
